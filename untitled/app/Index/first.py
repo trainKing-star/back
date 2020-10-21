@@ -19,9 +19,11 @@ def register():
 def login():
     username = request.form.get('username')
     password = request.form.get('password')
-    user = User.query.filter(username == username, password == password).first()
+    user = User.query.filter(User.username == username).first()
     if user:
-        return jsonify(returnmessage(200, returnuser(user)))
+        if user.password == password:
+            return jsonify(returnmessage(200, returnuser(user)))
+        return jsonify(returnmessage(404, '密码错误'))
     else:
         return jsonify(returnmessage(404, 'none'))
 

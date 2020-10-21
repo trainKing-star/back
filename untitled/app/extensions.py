@@ -1,10 +1,8 @@
 from flask_sqlalchemy import SQLAlchemy
-from flask_script import Manager
 import os
 import uuid
 
 db = SQLAlchemy()
-manager = Manager()
 
 
 def random_filename(filename):

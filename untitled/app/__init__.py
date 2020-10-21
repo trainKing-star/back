@@ -1,6 +1,5 @@
 from flask import Flask
-from flask_migrate import Migrate, MigrateCommand
-from app.extensions import db, manager
+from app.extensions import db
 from app.Index import index
 import click
 
@@ -13,8 +12,6 @@ def create_app():
     register_command(app)
     register_blueprint(app)
 
-    Migrate(app, db)
-    manager.add_command("db", MigrateCommand)
 
     return app
 
