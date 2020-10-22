@@ -1,6 +1,6 @@
 from app.Index import index
-from app.models import User
-from app.extensions import db, returnmessage, returnuser, random_filename
+from app.models import User, File
+from app.extensions import db, returnmessage, returnuser, random_filename, returnfile
 from flask import jsonify, request, current_app
 import os
 
@@ -32,8 +32,16 @@ def login():
 def upload():
     files = request.files.getlist('file')
     num = 0
+    filelist = []
     for file in files:
         num = num + 1
         file.filename = random_filename(file.filename)
         file.save(os.path.join(current_app.config['UPLOAD_PATH'], file.filename))
-    return jsonify(returnmessage(200, '成功保存' + str(num) + '个文件'))
+        file = File(filename=file.filename)
+        db.session.add(file)
+        db.session.commit()
+        filelist.append(file)
+    return jsonify(returnmessage(200, {
+        'fileNum': num,
+        'files': [returnfile(file) for file in filelist]
+    }))

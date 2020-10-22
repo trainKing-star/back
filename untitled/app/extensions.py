@@ -24,3 +24,9 @@ def returnuser(user):
         'password': user.password,
         'createtime': user.create_time
     }
+
+def returnfile(file):
+    return {
+        'fileid': file.id,
+        'filename': file.filename
+    }
