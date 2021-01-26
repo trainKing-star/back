@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/telephone/telephone.iml" filepath="$PROJECT_DIR$/telephone/telephone.iml" />
+      <module fileurl="file://$PROJECT_DIR$/textmessage/textmessage.iml" filepath="$PROJECT_DIR$/textmessage/textmessage.iml" />
+      <module fileurl="file://$PROJECT_DIR$/uaa/uaa.iml" filepath="$PROJECT_DIR$/uaa/uaa.iml" />
+    </modules>
+  </component>
+</project>

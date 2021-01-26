@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- namespace命名空间，作用就是对sql进行分类化管理，即sql隔离
+注意：使用mapper代理方法开发的话，namespace就有特殊重要的作用了
+ -->
+<mapper namespace="com.service.uaa.mapper.UserMapper">
+
+    <select id="getUserByName" resultMap="receivedUserMap">
+        select permission.name,user.UserId,user.Username,user.Password
+        from mybatis.permission,mybatis.user where user.Username=#{username} and permission.UId= user.UserId;
+    </select>
+
+    <resultMap id="receivedUserMap" type="User">
+        <result property="UserId" column="UserId"/>
+        <result property="Username" column="Username"/>
+        <result property="Password" column="Password"/>
+        <collection property="Permissions" column="name" ofType="java.lang.String" javaType="java.util.List"/>
+    </resultMap>
+
+</mapper>
